@@ -5,8 +5,8 @@ namespace App\Services;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
@@ -17,10 +17,8 @@ class OrderService
     /**
      * Create an order and deduct stock atomically.
      *
-     * @param array $orderData
-     * @param array $itemsData [['product_id' => 1, 'quantity' => 2], ...]
-     * @param User $user
-     * @return Order
+     * @param  array  $itemsData  [['product_id' => 1, 'quantity' => 2], ...]
+     *
      * @throws Exception
      */
     public function createOrder(array $orderData, array $itemsData, User $user): Order

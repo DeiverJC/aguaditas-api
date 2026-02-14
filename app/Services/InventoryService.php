@@ -2,33 +2,30 @@
 
 namespace App\Services;
 
+use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Inventory;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class InventoryService
 {
     /**
      * Adjust stock for a product (Input or Output).
      *
-     * @param Product $product
-     * @param int $quantity (Always positive, type determines direction)
-     * @param string $type ('input' or 'output')
-     * @param string $reason
-     * @param User|null $user
-     * @return Inventory
+     * @param  int  $quantity  (Always positive, type determines direction)
+     * @param  string  $type  ('input' or 'output')
+     *
      * @throws Exception
      */
     public function adjustStock(Product $product, int $quantity, string $type, string $reason, ?User $user = null): Inventory
     {
         return DB::transaction(function () use ($product, $quantity, $type, $reason, $user) {
             $inventory = $product->inventory()->firstOrCreate([
-                'product_id' => $product->id
+                'product_id' => $product->id,
             ], [
                 'current_stock' => 0,
-                'min_stock' => 0
+                'min_stock' => 0,
             ]);
 
             if ($type === 'output') {
