@@ -10,6 +10,8 @@ class UserRepository extends Repository
 {
     public static string $model = User::class;
 
+    public static string $uriKey = 'users';
+
     public function fields(RestifyRequest $request): array
     {
         return [
