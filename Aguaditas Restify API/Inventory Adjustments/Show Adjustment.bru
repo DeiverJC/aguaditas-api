@@ -1,17 +1,17 @@
 meta {
   name: Show Adjustment
   type: http
-  seq: 8
+  seq: 2
 }
 
 get {
-  url: {{base_url}}/api/restify/inventory-adjustments/1
+  url: {{base_url}}/api/restify/inventory-adjustments/1?related=user,items
   body: none
   auth: inherit
 }
 
 params:query {
-  ~include: user,items,pr
+  related: user,items
 }
 
 headers {
