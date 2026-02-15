@@ -1,11 +1,11 @@
 meta {
-  name: Show User
+  name: Show Order
   type: http
   seq: 2
 }
 
 get {
-  url: {{base_url}}/api/restify/users/1
+  url: {{base_url}}/api/restify/orders/2
   body: none
   auth: inherit
 }
@@ -13,9 +13,4 @@ get {
 headers {
   Accept: application/json
   Authorization: Bearer {{token}}
-}
-
-settings {
-  encodeUrl: true
-  timeout: 0
 }
